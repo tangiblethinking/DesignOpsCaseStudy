@@ -1,148 +1,132 @@
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 80px 0 60px;
   overflow: hidden;
   background: var(--white);
-  padding: var(--section-py) 0 60px;
 }
-
 .hero-bg-grid {
   position: absolute;
-  inset: -40px;
+  inset: 0;
   background-image:
-    linear-gradient(rgba(15,14,12,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15,14,12,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(var(--ink-08) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ink-08) 1px, transparent 1px);
+  background-size: 48px 48px;
   pointer-events: none;
   will-change: transform;
 }
-
 .hero-bg-accent {
   position: absolute;
-  top: 10%;
-  right: -100px;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
   background: radial-gradient(circle, rgba(26,79,204,0.06) 0%, transparent 70%);
   pointer-events: none;
   will-change: transform;
 }
-
 .hero-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  display: flex;
   align-items: center;
+  gap: 64px;
   position: relative;
   z-index: 1;
 }
-
+.hero-content { flex: 1; min-width: 0; }
 .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(52px, 7vw, 88px);
+  font-size: clamp(42px, 6vw, 80px);
   line-height: 1.0;
   letter-spacing: -0.03em;
   color: var(--ink);
   margin-bottom: 24px;
 }
-
-.hero-headline em {
-  font-style: italic;
-  color: var(--accent);
-}
-
+.hero-headline em { font-style: italic; color: var(--accent); }
 .hero-sub {
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: clamp(15px, 2vw, 18px);
   color: var(--ink-70);
+  line-height: 1.65;
   max-width: 480px;
   margin-bottom: 32px;
 }
-
-.hero-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .hero-tag {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--ink-70);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-40);
   background: var(--off-white);
-  border: 1px solid var(--ink-15);
+  border: 1px solid var(--ink-08);
   padding: 5px 12px;
   border-radius: 100px;
 }
 
-/* Stats grid */
+/* Stats */
 .hero-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  background: var(--ink-08);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+  width: 280px;
 }
-
 .hero-stat {
-  background: var(--white);
-  padding: 36px 32px;
-  position: relative;
-  cursor: default;
-  transition: background 0.2s;
-}
-
-.hero-stat:hover {
   background: var(--off-white);
+  border: 1px solid var(--ink-08);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  position: relative;
+  transition: box-shadow 0.2s;
+  /* overflow visible so tooltip isn't clipped */
+  overflow: visible;
 }
-
+.hero-stat:hover { box-shadow: var(--shadow-md); }
 .hero-stat-number {
   font-family: var(--font-display);
-  font-size: 48px;
+  font-size: 36px;
   line-height: 1;
   letter-spacing: -0.03em;
   color: var(--accent);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
-
 .hero-stat-label {
-  font-size: 13px;
+  font-family: var(--font-mono);
+  font-size: 11px;
   font-weight: 500;
-  color: var(--ink-70);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  color: var(--ink-40);
 }
 
+/* Stat tooltip — right side on desktop */
 .hero-stat-tooltip {
+  display: none;
   position: absolute;
-  bottom: calc(100% + 8px);
-  left: 16px;
-  right: 16px;
+  left: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
   background: var(--ink);
   color: var(--white);
   font-size: 12px;
   line-height: 1.5;
-  padding: 10px 12px;
+  padding: 10px 14px;
   border-radius: var(--radius-sm);
-  opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.2s, transform 0.2s;
+  width: 220px;
+  z-index: 100;
   pointer-events: none;
-  z-index: 10;
+  box-shadow: var(--shadow-lg);
 }
-
-.hero-stat:hover .hero-stat-tooltip {
-  opacity: 1;
-  transform: translateY(0);
+.hero-stat-tooltip::before {
+  content: '';
+  position: absolute;
+  right: 100%; top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right-color: var(--ink);
 }
+.hero-stat:hover .hero-stat-tooltip { display: block; }
 
 .hero-scroll-cue {
   position: absolute;
@@ -153,33 +137,61 @@
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
   font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--ink-40);
-  letter-spacing: 0.06em;
-  animation: bounce 2s ease-in-out infinite;
+  animation: bobDown 2s ease-in-out infinite;
 }
-
-@keyframes bounce {
+@keyframes bobDown {
   0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(6px); }
+  50%       { transform: translateX(-50%) translateY(6px); }
 }
 
+/* ── Tablet: stack content + stats ── */
 @media (max-width: 900px) {
   .hero-inner {
-    grid-template-columns: 1fr;
-    gap: 48px;
+    flex-direction: column;
+    gap: 40px;
+    align-items: flex-start;
   }
   .hero-stats {
+    width: 100%;
+    display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  /* Tooltip above on tablet (no room to the right) */
+  .hero-stat-tooltip {
+    left: 50%;
+    top: auto;
+    bottom: calc(100% + 10px);
+    transform: translateX(-50%);
+    width: 220px;
+  }
+  .hero-stat-tooltip::before {
+    right: auto;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    border-right-color: transparent;
+    border-top-color: var(--ink);
   }
 }
 
+/* ── Mobile: single column stats, tooltip below ── */
 @media (max-width: 480px) {
-  .hero-stat-number {
-    font-size: 36px;
+  .hero-stats {
+    grid-template-columns: 1fr;
   }
-  .hero-stat {
-    padding: 24px 20px;
+  .hero-stat-tooltip {
+    left: 0;
+    right: 0;
+    bottom: auto;
+    top: calc(100% + 8px);
+    transform: none;
+    width: auto;
   }
+  .hero-stat-tooltip::before { display: none; }
 }

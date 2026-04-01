@@ -50,7 +50,7 @@ export default function Problem() {
     if (!els) return
     const obs = new IntersectionObserver(
       (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
-      { threshold: 0.12 }
+      { threshold: 0.08 }
     )
     els.forEach(el => obs.observe(el))
     return () => obs.disconnect()
@@ -77,7 +77,7 @@ export default function Problem() {
           </p>
         </div>
 
-        {/* Chaos grid */}
+        {/* Chaos grid — single column mobile, scales up */}
         <div className="chaos-grid">
           {chaosItems.map((item, i) => (
             <div className={`chaos-card reveal d${Math.min(i + 1, 6)}`} key={item.label}>
@@ -106,6 +106,21 @@ export default function Problem() {
                 <span className="affected-impact">{s.impact}</span>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* 60-second executive takeaway — lives here, directly under critical systems */}
+        <div className="problem-takeaway reveal d2">
+          <div className="problem-takeaway-icon">
+            <span className="material-icons">lightbulb</span>
+          </div>
+          <div className="problem-takeaway-body">
+            <div className="problem-takeaway-label">60-second executive takeaway</div>
+            <p className="problem-takeaway-text">
+              Within 60 seconds, a design VP sees measurable delivery impact, organizational
+              structure, risk mitigation on business-critical systems, cross-departmental
+              alignment, and a framework that became company SOP.
+            </p>
           </div>
         </div>
       </div>

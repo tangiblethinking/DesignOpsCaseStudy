@@ -27,7 +27,7 @@ const competencies = [
     icon: 'scale',
     title: 'Operational Scaling',
     summary: 'Standardized processes became company-wide SOP, enabling sustainable growth.',
-    expanded: 'The framework wasn\'t built for design alone — it scaled to support marketing, development, and operations with varying communication styles. It became the standard operating procedure across all departments, not just a design team workaround.',
+    expanded: "The framework wasn't built for design alone — it scaled to support marketing, development, and operations with varying communication styles. It became the standard operating procedure across all departments, not just a design team workaround.",
     tag: 'Org Impact',
   },
   {
@@ -84,7 +84,7 @@ export default function Leadership() {
                   <span className="material-icons">{comp.icon}</span>
                 </div>
                 <span className="leadership-tag">{comp.tag}</span>
-                <span className={`leadership-toggle material-icons`}>
+                <span className="leadership-toggle material-icons">
                   {expanded === i ? 'expand_less' : 'expand_more'}
                 </span>
               </div>
@@ -98,21 +98,6 @@ export default function Leadership() {
               )}
             </div>
           ))}
-        </div>
-
-        {/* Takeaway */}
-        <div className={`takeaway reveal ${visible ? 'visible' : ''} d5`}>
-          <div className="takeaway-icon">
-            <span className="material-icons">lightbulb</span>
-          </div>
-          <div className="takeaway-body">
-            <div className="takeaway-label">60-second executive takeaway</div>
-            <p className="takeaway-text">
-              Within 60 seconds, a design VP sees measurable delivery impact, organizational maturity advancement,
-              risk mitigation on business-critical systems, cross-departmental alignment,
-              and a framework that became company SOP. This signals senior-level Design Operations competence immediately.
-            </p>
-          </div>
         </div>
       </div>
     </section>

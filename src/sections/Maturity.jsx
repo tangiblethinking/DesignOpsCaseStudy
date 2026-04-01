@@ -93,12 +93,13 @@ export default function Maturity() {
             Capability advancement
           </h2>
           <p className="section-subhead">
-            The framework didn't just fix delivery speed — it advanced the organization's
-            operational maturity across every design-adjacent function. Hover each row for detail.
+            The framework advanced the organization's operational maturity across every
+            design-adjacent function. Hover or tap each row for detail.
           </p>
         </div>
 
         <div className={`maturity-table reveal ${visible ? 'visible' : ''} d2`}>
+          {/* Desktop header */}
           <div className="maturity-table-header">
             <div className="maturity-col-capability">Capability</div>
             <div className="maturity-col-state">
@@ -117,12 +118,11 @@ export default function Maturity() {
               className={`maturity-row reveal ${visible ? 'visible' : ''} d${Math.min(i + 2, 6)} ${active === i ? 'maturity-row-active' : ''}`}
               onMouseEnter={() => setActive(i)}
               onMouseLeave={() => setActive(null)}
+              onClick={() => setActive(active === i ? null : i)}
             >
+              {/* Desktop: 5 columns */}
               <div className="maturity-col-capability">
                 <span className="maturity-cap-label">{cap.capability}</span>
-                {active === i && (
-                  <div className="maturity-row-tooltip">{cap.tooltip}</div>
-                )}
               </div>
               <div className="maturity-col-state">
                 <span className="maturity-state-before">{cap.before}</span>
@@ -136,6 +136,11 @@ export default function Maturity() {
               <div className="maturity-col-level">
                 <MaturityBar level={cap.afterLevel} variant="after" />
               </div>
+
+              {/* Tooltip on hover/tap */}
+              {active === i && (
+                <div className="maturity-row-tooltip">{cap.tooltip}</div>
+              )}
             </div>
           ))}
         </div>

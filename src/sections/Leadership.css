@@ -2,189 +2,103 @@
   padding: var(--section-py) 0;
   background: var(--off-white);
 }
-
 .leadership-header {
   max-width: 640px;
   margin-bottom: 56px;
 }
 
+/* Mobile-first: single column, scales up */
 .leadership-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 12px;
-  margin-bottom: 48px;
+}
+@media (min-width: 640px) {
+  .leadership-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+@media (min-width: 960px) {
+  .leadership-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .leadership-card {
   background: var(--white);
   border: 1px solid var(--ink-08);
   border-radius: var(--radius-md);
-  padding: 28px 24px;
+  padding: 24px;
   cursor: pointer;
   transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
-  position: relative;
 }
-
 .leadership-card:hover {
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
-  border-color: var(--accent);
 }
-
 .leadership-card-open {
   border-color: var(--accent);
   box-shadow: var(--shadow-md);
-  grid-column: span 2;
 }
-
 .leadership-card-top {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 16px;
 }
-
 .leadership-icon-wrap {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
+  width: 40px;
+  height: 40px;
   background: var(--accent-light);
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-
 .leadership-icon-wrap .material-icons {
   font-size: 18px;
   color: var(--accent);
 }
-
 .leadership-tag {
+  flex: 1;
   font-family: var(--font-mono);
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-40);
-  flex: 1;
 }
-
 .leadership-toggle {
-  font-size: 18px !important;
+  font-size: 20px !important;
   color: var(--ink-40);
-  transition: transform 0.2s;
+  transition: transform 0.2s, color 0.2s;
 }
-
 .leadership-card-open .leadership-toggle {
   color: var(--accent);
 }
-
 .leadership-title {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   color: var(--ink);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  line-height: 1.3;
 }
-
 .leadership-summary {
   font-size: 13px;
   color: var(--ink-70);
   line-height: 1.55;
 }
-
-.leadership-expanded {
-  margin-top: 16px;
-  animation: expandIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes expandIn {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
+.leadership-expanded { margin-top: 16px; }
 .leadership-expanded-divider {
   height: 1px;
   background: var(--ink-08);
   margin-bottom: 14px;
 }
-
 .leadership-expanded-text {
   font-size: 13px;
   color: var(--ink-70);
   line-height: 1.65;
-}
-
-/* Takeaway */
-.takeaway {
-  background: var(--accent);
-  border-radius: var(--radius-lg);
-  padding: 40px 48px;
-  display: flex;
-  gap: 28px;
-  align-items: flex-start;
-}
-
-.takeaway-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-md);
-  background: rgba(255,255,255,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.takeaway-icon .material-icons {
-  font-size: 22px;
-  color: rgba(255,255,255,0.9);
-}
-
-.takeaway-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 10px;
-}
-
-.takeaway-text {
-  font-size: 16px;
-  color: rgba(255,255,255,0.92);
-  line-height: 1.65;
-  max-width: 720px;
-}
-
-@media (max-width: 1100px) {
-  .leadership-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .leadership-card-open {
-    grid-column: span 2;
-  }
-}
-
-@media (max-width: 768px) {
-  .leadership-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .leadership-card-open {
-    grid-column: span 2;
-  }
-  .takeaway {
-    flex-direction: column;
-    padding: 28px 24px;
-  }
-}
-
-@media (max-width: 480px) {
-  .leadership-grid {
-    grid-template-columns: 1fr;
-  }
-  .leadership-card-open {
-    grid-column: span 1;
-  }
 }
